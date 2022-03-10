@@ -9,8 +9,6 @@ public:
             if(max_sum<current_sum){
                 max_sum=current_sum;
             }
-            if(max_sum<current_sum)
-                max_sum=current_sum;
             if(current_sum<0)
                 current_sum=0;
         }
