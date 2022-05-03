@@ -1,58 +1,22 @@
-// { Driver Code Starts
 #include<bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
-class Solution
-{
-    public:
-    void helper(string s,int l,int r,vector<string> &ans){
-        if(l==r){
-            ans.push_back(s);
-        }
-        else{
-            for(int i=l;i<=r;i++){
-                char a=s[l];
-                s[l]=s[i];
-                s[i]=a;
-                
-                helper(s,l+1,r,ans);
-                
-                char b=s[l];
-                s[l]=s[i];
-                s[i]=b;
-            }
-        }
-    }
+void permutations(string s,string ans){
     
-	public:
-		vector<string>find_permutation(string S)
-		{
-		 vector<string> ans;
-		 helper(S,0,S.size()-1,ans);
-		 sort(ans.begin(),ans.end());
-		 return ans;
-		}
-};
-
-
-
-// { Driver Code Starts.
-int main(){
-    int t;
-    cin >> t;
-    while(t--)
-    {
-	    string S;
-	    cin >> S;
-	    Solution ob;
-	    vector<string> ans = ob.find_permutation(S);
-	    for(auto i: ans)
-	    {
-	    	cout<<i<<" ";
-	    }
-	    cout<<"\n";
+    if(s.length()==0){
+        cout<<ans<<" ";
+        return;
     }
-	return 0;
+    for(int i=0;i<s.length();i++){
+        char ch = s[i];
+        string ros=s.substr(0,i)+s.substr(i+1);
+        
+        permutations(ros,ans+ch);
+    }    
 }
-  // } Driver Code Ends
+
+int main()
+{
+    permutations("ABC","");
+    return 0;
+}
